@@ -10,7 +10,9 @@ for (let marketGroup of [...marketGroups]) {
 }
  
 // удаление статы
-let allMarkets = document.getElementsByClassName('dops-item-row__block-right')
+let lineMarkets = document.querySelectorAll('app-line-main-dops-container > div > button')
+let mainMarkets = document.getElementsByClassName('dops-item-row__block-right')
+let allMarkets = [...lineMarkets, ...mainMarkets]
 let counterDisabledMarkets = 0;
 for (market of allMarkets) {
     if (market.disabled) counterDisabledMarkets++;
@@ -21,8 +23,8 @@ const now = new Date();
 const hours = now.getHours() < 10 ? '0' + now.getHours() : now.getHours();
 const minutes = now.getMinutes() < 10 ? '0' + now.getMinutes() : now.getMinutes();
 const seconds = now.getSeconds() < 10 ? '0' + now.getSeconds() : now.getSeconds();
- 
-console.log(`[${hours}:${minutes}:${seconds}]: ${allMarkets.length} (${allMarkets.length - counterDisabledMarkets}, ${counterDisabledMarkets})`);
- 
+
 // ДЛЯ ПРОВЕРКИ:
-console.log(document.getElementsByClassName('dops-item-row__block-right'))
+console.log(allMarkets)
+
+console.log(`[${hours}:${minutes}:${seconds}]: ${allMarkets.length} (${allMarkets.length - counterDisabledMarkets}, ${counterDisabledMarkets})`);

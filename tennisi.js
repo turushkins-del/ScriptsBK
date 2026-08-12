@@ -30,4 +30,4 @@ const seconds = now.getSeconds() < 10 ? '0' + now.getSeconds() : now.getSeconds(
 console.log(`[${hours}:${minutes}:${seconds}]: ${allMarkets} (${allMarkets - disabled}, ${disabled})`);
  
 // ПРОВЕРКА
-console.log(document.querySelectorAll('a#p:not(td > b > a)'));
+console.log(document.querySelectorAll('a#p:not(tr[align=center] > td > b > a)'));

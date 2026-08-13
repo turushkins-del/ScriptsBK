@@ -1,5 +1,5 @@
 if (document.getElementsByClassName('ww-tabs__item--active')[0].innerHTML.includes('Все')) {
-    let statisticNames = ['Угловые', 'Карточки', 'Игроки']
+    let statisticNames = ['Угловые', 'Карточки', 'Игроки', 'Статистика']
     let marketGroups = document.querySelectorAll('.market-group__title')
     for (let marketGroup of [...marketGroups]) {
         if (statisticNames.some(word => marketGroup.innerHTML.includes(word))) {

@@ -123,4 +123,4 @@ function start() {
 start()
  
 // ДЛЯ ПРОВЕРКИ
-// console.log(document.getElementsByClassName('full-event-markets--YCk')[0].querySelectorAll('button[outcomeid]'))
+console.log(document.getElementsByClassName('full-event-markets--YCk')[0].querySelectorAll('button[outcomeid]'))

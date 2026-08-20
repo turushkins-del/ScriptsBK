@@ -80,7 +80,7 @@ function start() {
  
     let activeTab = document.getElementsByClassName('bg-surface-action-fixed color-icotex-normal-fixed hover:color-icotex-normal-fixed event-tabs__tab-HXm-')[0];
     if (activeTab.firstElementChild.firstElementChild.innerHTML == 'Все') {
-        statisticWords = ['. Угловые', '. Жёлтые карточки', '. Игроки']
+        statisticWords = ['. Угловые', '. Жёлтые карточки', 'Игроки', 'Фолы', 'Вброс аутов', 'Удары от ворот', 'Офсайды']
     
         for (let groupMarket of [...martketContainer.childNodes]) {
             if (statisticWords.some(word => groupMarket.dataset.tPartTime.toUpperCase().includes(word.toUpperCase()))) {

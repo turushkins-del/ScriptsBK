@@ -1,33 +1,56 @@
-let delayTimer = 3000
+let marketsRow, betShadowRoot;
  
-let sectionList = document.querySelector('main > div > section > div.relative.isolate > div > div > div > section > div.items-center > div')
- 
-let marketsContainer = document.querySelector("main > div > section > div.relative.isolate > div > div > div > :nth-child(3) > div ")
- 
-let resultButtons = []
- 
-for (let section of [...sectionList.children]) {
-    let sectionTitle = section.querySelector('span').textContent
- 
-    if (sectionTitle == 'Статистика') continue
- 
-    section.click()
-    await new Promise(r => setTimeout(r, delayTimer))
- 
-    let btns;
-    let sectionBtns = []
-    for (let marketSection of [...marketsContainer.children]) {
-        let marketGroup = marketSection.querySelector('div > div')
-        btns = marketGroup.querySelectorAll('button[data-odd-active]')
- 
-        resultButtons.push(...btns)
-        sectionBtns.push(...btns)
+function checkClass(m, a) {
+    if ([...marketsRow].every(el => el.classList.contains('dg_collapse--open'))) {
+        showResults(betShadowRoot)
+        observer.disconnect();
     }
-    console.log(sectionTitle)
-    console.log(sectionBtns.length)
 }
  
+let observer = new MutationObserver(checkClass)
  
-console.log(resultButtons)
-console.log(resultButtons.length)
+function openAllMarkets(marketsRow) {
+    for (let markets of marketsRow) {
+        if (!(markets.classList.contains('dg_collapse--open'))) {
+            markets.firstElementChild.click()
+        }
+    }
+}
  
+function showResults(SR) {
+    let counterDisabledMarkets = 0;
+    let markets = SR.querySelectorAll('.dg_lv_stake');
+    
+    let available = markets.length;
+    let disabled = counterDisabledMarkets;
+ 
+    const now = new Date();
+    const hours = now.getHours() < 10 ? '0' + now.getHours() : now.getHours();
+    const minutes = now.getMinutes() < 10 ? '0' + now.getMinutes() : now.getMinutes();
+    const seconds = now.getSeconds() < 10 ? '0' + now.getSeconds() : now.getSeconds();
+ 
+    console.log(`[${hours}:${minutes}:${seconds}]: ${available} (${available - disabled}, ${disabled})`);
+}
+ 
+function getCountMarket() {
+    betShadowRoot = document.querySelector('sport-latino-view').shadowRoot;
+    marketsRow = betShadowRoot.querySelectorAll('.dg_collapse');
+    
+    if ([...marketsRow].every(el => el.classList.contains('dg_collapse--open'))) {
+        showResults(betShadowRoot)
+        observer.disconnect();
+    } else {
+        [...marketsRow].forEach(el => {
+            observer.observe(el, {
+                attributes: true,
+                attributeFilter: ['class']
+            })
+        })
+    }
+    openAllMarkets(marketsRow)
+}
+ 
+getCountMarket()
+ 
+// ПРОВЕРКА 
+/console.log(document.querySelector('sport-latino-view').shadowRoot.querySelectorAll('.dg_lv_stake'));

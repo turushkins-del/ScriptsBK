@@ -24,4 +24,4 @@ const seconds = now.getSeconds() < 10 ? '0' + now.getSeconds() : now.getSeconds(
 console.log(`[${hours}:${minutes}:${seconds}]: ${allMarkets.length} (${allMarkets.length - counterDisabledMarkets}, ${counterDisabledMarkets})`);
  
 // ДЛЯ ПРОВЕРКИ: 
-// console.log(document.getElementsByClassName('market__row-btn market-row-btn ng-star-inserted'))
+console.log(document.getElementsByClassName('market__row-btn market-row-btn ng-star-inserted'))

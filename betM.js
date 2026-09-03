@@ -53,4 +53,4 @@ function getCountMarket() {
 getCountMarket()
  
 // ПРОВЕРКА 
-// console.log(document.querySelector('sport-latino-view').shadowRoot.querySelectorAll('.dg_lv_stake'));
+/console.log(document.querySelector('sport-latino-view').shadowRoot.querySelectorAll('.dg_lv_stake'));

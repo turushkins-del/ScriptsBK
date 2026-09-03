@@ -19,7 +19,7 @@ console.log(document.querySelectorAll('span[id^="op"]'));
 
 // PREMATCH
 
-let allMarkets = document.querySelectorAll('a#p:not(td > b > a)').length
+let allMarkets = document.querySelectorAll('a#p:not(tr[align=center] > td > b > a)').length
 let disabled = 0;
  
 const now = new Date();

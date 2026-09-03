@@ -2,7 +2,7 @@
 
 let statisticWords = ['грок', 'углов', 'ЖЁЛТЫЕ', 'желты', 'фолы', 'удары', 'офсайд', 'аут', 'сейв', 'отбор', 'передач', 'автор', 'забьёт последний гол', 'створ', 'фол', 'от ворот', 'кто забьет']
 
-let marketTitles = document.querySelectorAll('.headerContainer--ZBJ-Q3')
+let marketTitles = document.querySelectorAll('.headerContainer--SZ3oD4')
 
 for (marketTitle of [...marketTitles]) {
     marketContainer = marketTitle.parentElement
@@ -16,5 +16,5 @@ for (marketTitle of [...marketTitles]) {
     }
 }
 
-console.log(document.querySelectorAll('.root--6qrTME'))
-console.log(document.querySelectorAll('.root--6qrTME').length)
+console.log(document.querySelectorAll('.root--FX9E7i'))
+console.log(document.querySelectorAll('.root--FX9E7i').length)

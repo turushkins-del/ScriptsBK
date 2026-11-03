@@ -4,11 +4,15 @@
 let visibleMarketsContainers, lastVisibleMarketContainer, lastVisibleMarketContainerDataIndex = -1;
 let visibleMarketButtons = []
 
-
-
 // CONFIG
 let delayTimer = 1500
 let statisticWords = ['грок', 'углов', 'ЖЁЛТЫЕ', 'фолы', 'удары', 'офсайд', 'аут', 'сейв', 'отбор', 'передач', 'кто забьет', 'штанги', 'VAR', 'удет удалён', 'Автор', 'Тотал жёлтых карточек', 'Карточки']
+
+let openAllMarketsBTN = document.querySelector('.sp-new-gameDetailsMarketsSelector__collapseBtn')
+openAllMarketsBTN.click()
+openAllMarketsBTN.click()
+openAllMarketsBTN.click()
+await new Promise(r => setTimeout(r, delayTimer))
 
 
 let shouldRun = true
@@ -24,7 +28,7 @@ while (shouldRun) {
 
         if (currentVisibleMarketsContainerDataIndex <= lastVisibleMarketContainerDataIndex) continue 
         
-        let visibleMarketContainerTitle = visibleMarketContainer.querySelector('.sgm-market-head-info').textContent.toUpperCase()
+        let visibleMarketContainerTitle = visibleMarketContainer.querySelector('.sp-new-marketGroup__header__left__title').textContent.toUpperCase()
         
         if (statisticWords.some(word => visibleMarketContainerTitle.includes(word.toUpperCase()))) {
             console.log('НЕ УЧИТЫВАЕМ: ', visibleMarketContainerTitle)
@@ -33,9 +37,8 @@ while (shouldRun) {
             await new Promise(r => setTimeout(r, delayTimer))
             continue
         }
-   
 
-        let showMoreBTN = visibleMarketContainer.querySelector('div > div > label > p')
+        let showMoreBTN = visibleMarketContainer.querySelector('button.sp-see-more-selections')
         if (showMoreBTN != null) {
             showMoreBTN.click()
             await new Promise(r => setTimeout(r, delayTimer))
@@ -44,12 +47,12 @@ while (shouldRun) {
             visibleMarketsContainers = document.querySelectorAll('div[data-index]')
         }
         
-        let visibleMarketsContainerButtons = visibleMarketContainer.querySelectorAll('.sgm-market-g-i-cell-bc:not(.empty-market-bc, .m-g-header)')
-
+        let visibleMarketsContainerButtons = visibleMarketContainer.querySelectorAll('div.marketEventNew:not(.empty)')
         visibleMarketButtons.push(...visibleMarketsContainerButtons)
         lastVisibleMarketContainer = visibleMarketContainer
         lastVisibleMarketContainerDataIndex = currentVisibleMarketsContainerDataIndex
-        console.log('[' + lastVisibleMarketContainerDataIndex + '] ' + lastVisibleMarketContainer.querySelector('.sgm-market-head-info').textContent +' (' + visibleMarketsContainerButtons.length + ')')
+        console.log('[' + lastVisibleMarketContainerDataIndex + '] ' + lastVisibleMarketContainer.querySelector('.sp-new-marketGroup__header__left__title').textContent +' (' + visibleMarketsContainerButtons.length + ')')
+        console.log(visibleMarketsContainerButtons)
     }
     lastVisibleMarketContainer.scrollIntoView({block: "start"})
     await new Promise(r => setTimeout(r, delayTimer))

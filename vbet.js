@@ -31,20 +31,26 @@ while (shouldRun) {
         let visibleMarketContainerTitle = visibleMarketContainer.querySelector('.sp-new-marketGroup__header__left__title').textContent.toUpperCase()
         
         if (statisticWords.some(word => visibleMarketContainerTitle.includes(word.toUpperCase()))) {
-            console.log('НЕ УЧИТЫВАЕМ: ', visibleMarketContainerTitle)
+            console.log('НЕ УЧИТЫВАЕМ: [' + currentVisibleMarketsContainerDataIndex + '] ' + visibleMarketContainerTitle)
             visibleMarketContainer.scrollIntoView({block: "start"})
             lastVisibleMarketContainerDataIndex = currentVisibleMarketsContainerDataIndex
             await new Promise(r => setTimeout(r, delayTimer))
-            continue
+            if (visibleMarketContainer.nextElementSibling == null) {
+                break
+            } else {
+                continue
+            }
         }
 
         let showMoreBTN = visibleMarketContainer.querySelector('button.sp-see-more-selections')
         if (showMoreBTN != null) {
-            showMoreBTN.click()
-            await new Promise(r => setTimeout(r, delayTimer))
-            visibleMarketContainer.scrollIntoView({block: "start"})
-            await new Promise(r => setTimeout(r, delayTimer))
-            visibleMarketsContainers = document.querySelectorAll('div[data-index]')
+            if (!(showMoreBTN.classList.contains('sp-see-more-selections--expanded'))) {
+                showMoreBTN.click()
+                await new Promise(r => setTimeout(r, delayTimer))
+                visibleMarketContainer.scrollIntoView({block: "start"})
+                await new Promise(r => setTimeout(r, delayTimer))
+                break
+            }
         }
         
         let visibleMarketsContainerButtons = visibleMarketContainer.querySelectorAll('div.marketEventNew:not(.empty)')

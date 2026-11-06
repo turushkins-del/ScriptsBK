@@ -1,13 +1,17 @@
-let statisticWords = ['грок', 'углов', 'ЖЁЛТЫЕ', 'желты', 'фолы', 'удары', 'офсайд', 'аут', 'сейв', 'отбор', 'передач', 'автор', 'забьёт последний гол', 'створ', 'фол', 'от ворот']
+let statisticWords = ['грок', 'углов', 'ЖЁЛТЫЕ', 'желты', 'фолы', 'удары', 'офсайд', 'аут', 'сейв', 'отбор', 'передач', 'автор', 'каркас', 'штрафной', 'количество ударов', 'штанг', 'забьет последний гол', 'створ', 'фол', 'от ворот']
 
-let marketContainer = document.querySelectorAll('.markets-list-content__column_Rc3so')[0]
+let containers = document.querySelectorAll('._aFN2')
+let marketContainersChildrens = []
+containers.forEach(el => {
+    marketContainersChildrens.push(...el.children)
+})
 
-for (let market of [...marketContainer.children]) {
-    let marketGroupTitle = market.querySelector('span.market-group-title__label_3nQx3').textContent.toUpperCase()
+for (let market of marketContainersChildrens) {
+    let marketGroupTitle = market.querySelector('span._aFOV').textContent.toUpperCase()
     if (statisticWords.some(word => marketGroupTitle.includes(word.toUpperCase()))) {
         console.log('УДАЛЕН: ', marketGroupTitle)
         
-        let odds = market.querySelectorAll('span.sportline-group-market-runner__coefficient--left_uVMe5')
+        let odds = market.querySelectorAll('span[data-test-el="sportline-runner-name"]')
         let oddsText = 'ИСХОДЫ: '
         odds.forEach(element => { 
             oddsText += element.textContent + ' | '   
@@ -19,7 +23,7 @@ for (let market of [...marketContainer.children]) {
     }
 }
 
-let allButtons = document.querySelectorAll('.sport-event-details-item__runner_bQQS2')
+let allButtons = document.querySelectorAll('button._aFPd[data-sportline-runner]')
 let resultButtons = []
 
 for (let btn of [...allButtons]) {
@@ -27,14 +31,6 @@ for (let btn of [...allButtons]) {
         resultButtons.push(btn)
         continue
     } 
-
-    // На случай, если нужно считать маркеты под замком
-    isLocked = btn.querySelector('span[data-test-el=sportline-runner-mask]') == undefined ? false : true
-
-    if (isLocked) {
-        resultButtons.push(btn)
-        continue
-    }
 }
 
 console.log(resultButtons)

@@ -1,30 +1,24 @@
 let delayTimer = 3000
  
-let sectionList = document.querySelector('main > div > section > div.relative.isolate > div > div > div > section > div.items-center > div')
- 
-let marketsContainer = document.querySelector("main > div > section > div.relative.isolate > div > div > div > :nth-child(3) > div ")
- 
+let sectionList = document.querySelector('main > div > section > div.flex > div > div > div > div > section > div > div > div > div > div.items-center > div') // Матч, таймы
+let [, ...sectionListItems] = sectionList.children // Убираем первый элемент - избранные исходы
+     
 let resultButtons = []
- 
-for (let section of [...sectionList.children]) {
+
+for (let section of sectionListItems) {
     let sectionTitle = section.querySelector('span').textContent
  
     if (sectionTitle == 'Статистика') continue
  
     section.click()
     await new Promise(r => setTimeout(r, delayTimer))
- 
-    let btns;
-    let sectionBtns = []
-    for (let marketSection of [...marketsContainer.children]) {
-        let marketGroup = marketSection.querySelector('div > div')
-        btns = marketGroup.querySelectorAll('button[data-odd-active]')
- 
-        resultButtons.push(...btns)
-        sectionBtns.push(...btns)
-    }
+    
+    let marketsContainer = document.querySelector("main > div > section > div.flex > div > div > div > div > div.flex > div > div")
+    let btns = marketsContainer.querySelectorAll('button[data-odd-active]:not(button[disabled])')
+
+    resultButtons.push(...btns)
     console.log(sectionTitle)
-    console.log(sectionBtns.length)
+    console.log(btns.length)
 }
  
  

@@ -1,3 +1,8 @@
+// Считает исходы только на активной вкладке. 
+// => не имеет смысла считать с вкладки Popular, BetBuilder, TopBets
+// При этом, если по каким то причинам, стата будет на вкладке Results, скрипт ее удалит
+// Если нет - можно подправить массив statisticWords
+
 // CONFIG
 const delayTimer = 300
 const statisticWords = ['corner', 'yellow', 'foul', 'shot', 'goalscorers', 'player', 'card', 'goal scorer', 'promoted build a bet', 'booked', 'multi scorers', 'score or ']

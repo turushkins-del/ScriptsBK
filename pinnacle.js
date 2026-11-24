@@ -1,7 +1,7 @@
 // ‼ ДЛЯ РАБОТЫ СКРИПТА: Расскрыть маркеты полносью 
 
 //let allMarketGroups = [];
-const statisticWords = ['угловые', 'предупреждения', 'фолы', 'офсайд']
+const statisticWords = ['offside']
 
 
 const allMarketGroups = document.querySelectorAll('div[class^="marketGroups"')[0]
@@ -23,7 +23,7 @@ for (let mainMarketGroup of [...allMarketGroups.children]) {
         console.log('ОСТАЕТСЯ: ', marketTitles, '\n')
 
         let buttons = Array.from(marketGroup.querySelectorAll('button'))
-        let targetButton = buttons.find(el => el.textContent.trim() === 'Отображать больше')
+        let targetButton = buttons.find(el => el.textContent.trim() === 'See more')
         
         if (targetButton == undefined) continue
         

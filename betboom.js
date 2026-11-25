@@ -1,3 +1,5 @@
+// для подсчета необходимо перейти на вкладку "Все"
+
 let allMarketGroups = document.querySelectorAll('section[class^="bb-"')
 
 let allMarketButtons = []
